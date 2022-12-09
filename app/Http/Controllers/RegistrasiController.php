@@ -13,9 +13,11 @@ class RegistrasiController extends Controller
     {
         $validatedData = $this->validate($request, [
             "name"=> "required",
-            "email"=> "required|email|unique:member,email",
+            "email"=> "required|email",
             "password"=> "required",
         ]);
+
+        $validatedData["password"] = Hash::make($validatedData["password"]);
 
         Registrasi::create($validatedData);
         return $this->responHasil(200, true, "Registrasi berhasil");

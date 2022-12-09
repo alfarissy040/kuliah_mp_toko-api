@@ -23,5 +23,5 @@ $router->post("/login", ["uses" => "LoginController@login"]);
 $router->get("/produk", ["uses" => "ProdukController@get"]);
 $router->get("/produk/{id}", ["uses" => "ProdukController@show"]);
 $router->post("/produk", ["uses" => "ProdukController@create"]);
-$router->patch('/produk/{id}', ["uses" => "ProdukController@update"]);
+$router->put('/produk/{id}', ["uses" => "ProdukController@update"]);
 $router->delete('/produk/{id}', ["uses" => "ProdukController@delete"]);

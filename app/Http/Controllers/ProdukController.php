@@ -48,9 +48,13 @@ class ProdukController extends Controller
         }
     }
 
-    public function get()
+    public function get(Request $request)
     {
-        $data = Produk::orderBy("kode_produk", "Asc")->paginate(50);
+        if($request->has("pagination")) {
+            $pagination = $request["pagination"];
+        } else $pagination = 50;
+        
+        $data = Produk::orderBy("kode_produk", "Asc")->paginate((int)$pagination);
 
         return $this->responHasil(200, true, $data);
     }
