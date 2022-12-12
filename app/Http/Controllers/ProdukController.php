@@ -52,9 +52,23 @@ class ProdukController extends Controller
     {
         if($request->has("pagination")) {
             $pagination = $request["pagination"];
-        } else $pagination = 50;
+        } else {
+            $pagination = 50;
+        }
+        switch ($request["sort"]) {
+            case 'nama':
+                $sort = "nama_produk";
+                break;
+            case 'harga':
+                $sort = "harga";
+                break;
+                
+            default:
+                $sort = "kode_produk";
+                break;
+        }
         
-        $data = Produk::orderBy("kode_produk", "Asc")->paginate((int)$pagination);
+        $data = Produk::orderBy($sort, "Asc")->paginate((int)$pagination);
 
         return $this->responHasil(200, true, $data);
     }
