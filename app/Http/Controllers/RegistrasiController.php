@@ -16,6 +16,7 @@ class RegistrasiController extends Controller
             "email"=> "required|email",
             "password"=> "required",
         ]);
+        // return $validatedData;
 
         $validatedData["password"] = Hash::make($validatedData["password"]);
 
